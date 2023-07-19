@@ -1,6 +1,11 @@
 @use "../variables" as v;
 
 @mixin button() {
+    .button-container {
+        display: flex;
+        text-align: center;
+    }
+
     button {
         color: v.$white;
         background: v.$container-bg;
@@ -8,11 +13,18 @@
         font-size: 1rem;
         text-transform: uppercase;
         letter-spacing: 0.1rem;
-        padding: 1.2rem 1rem;
+        padding: 1rem 1rem;
         border: none;
         width: 80%;
+        height: auto;
         margin: 0 auto;
         margin-top: 1rem;
         cursor: pointer;
     }
+
+    .button-x2 {
+        width: 40%;
+    }
+
+    
 }

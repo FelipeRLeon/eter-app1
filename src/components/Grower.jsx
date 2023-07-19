@@ -21,7 +21,9 @@ const Grower = () => {
                 <input type="text" id="grower_city"/>
                 <p className="error">Valid Name Required</p>
             </fieldset>
-            <button type='submit'>Next</button>
+            <div className='button-container'>
+                <button type='submit'>Next</button>
+            </div>
             <div className='option'>Option</div>
         </form>
     </div>
@@ -30,4 +32,4 @@ const Grower = () => {
   )
 }
 
-export default Grower
+export default Grower;
