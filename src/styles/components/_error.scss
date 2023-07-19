@@ -1,0 +1,13 @@
+@use "../variables" as v;
+
+@mixin error() {
+    .error{
+        color: v.$error;
+        font-family: v.$font-family;
+        font-size: .8rem;
+        text-align: right;
+        text-transform: capitalize;
+        margin-top: .4rem;
+        display: none;
+    }
+}

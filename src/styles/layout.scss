@@ -1,0 +1,26 @@
+@use "./variables" as v;
+
+.container {
+    width: 100vw;
+    height: 100vh;
+    padding: 20px;
+    background: v.$container-bg;
+
+    main {
+        background: v.$main-bg;
+        border-radius: 8px;
+        box-shadow: 0 1px 1px rgba(0,0,0,0.11), 0 2px 2px rgba(0,0,0,0.11), 0 4px 4px rgba(0,0,0,0.11), 0 8px 8px rgba(0,0,0,0.11), 0 16px 16px rgba(0,0,0,0.11), 0 32px 32px rgba(0,0,0,0.11);
+        max-width: 500px;
+        margin: 0 auto;
+        padding: 20px;
+        
+        h3 {
+            font-family: v.$font-family;
+            font-weight: 900;
+            color: v.$black;
+            text-align: center;
+            letter-spacing: 0.05rem;
+            padding: .8rem;
+        }
+    }
+}

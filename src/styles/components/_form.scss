@@ -1,0 +1,21 @@
+@use "./label.scss" as l;
+@use "./inputs.scss" as i;
+@use "./error.scss" as e;
+@use "./button.scss" as b;
+
+
+form {
+    fieldset {
+        border: none;
+        display: flex;
+        flex-direction: column;
+        padding: 0.4rem 0;
+        @include l.label();
+        @include i.inputs();
+        @include e.error();
+    }
+
+    @include b.button();
+
+    
+}
