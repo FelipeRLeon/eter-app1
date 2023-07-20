@@ -47,7 +47,6 @@ const PlantStrain = () => {
                     }
                 }>Next</button>
             </div>
-            <div className='option'>Option</div>
         </form>
     </div>
   </main>

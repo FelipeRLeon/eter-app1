@@ -13,5 +13,14 @@
         color: v.$black;
         background-color: #d7ffd893;
         border-radius: 1px;
+
+        &:invalid[data-focused="true"]{
+            background-color: #f154541e;
+        }   
+
+        //Muestra el mensaje de error
+        &:invalid[data-focused="true"] ~ p {
+            display: block;          
+        }   
     }
-}
+} 

@@ -55,7 +55,6 @@ const GrowType = () => {
                 }>Next</button>
             </div>
             </form>
-            <div className='option'>Option</div>
         </div>
     </main>
   )

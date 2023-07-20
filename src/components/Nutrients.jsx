@@ -48,7 +48,6 @@ const Nutrients = () => {
                     }
                 }>Next</button>
             </div>
-            <div className='option'>Option</div>
         </form>
     </div>
   </main>

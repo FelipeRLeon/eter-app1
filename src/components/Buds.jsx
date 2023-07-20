@@ -52,7 +52,6 @@ const Buds = () => {
                     }
                 }>Finish</button>
             </div>
-            <div className='option'>Option</div>
         </form>
     </div>
   </main>
