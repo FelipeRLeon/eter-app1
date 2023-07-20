@@ -4,19 +4,22 @@ import PlantStrain from "./components/PlantStrain";
 import Nutrients from "./components/Nutrients";
 import Buds from "./components/Buds";
 import { useState } from "react";
+import GrowerContext from "./context/GrowerContext";
 
 function App() {
-  const [step, setStep] = useState("nutrients")
+  const [step, setStep] = useState("grower");
 
   return (
-    <div className='container'>
+    <GrowerContext.Provider value={{ step, setStep,}}>
+      <div className='container'>
       {step === 'grower' && <Grower/>} 
       {step === 'growtype' && <GrowType/>} 
       {step === 'plantstrain' && <PlantStrain/>} 
       {step === 'nutrients' && <Nutrients/>} 
       {step === 'buds' && <Buds/>} 
-    </div>    
-  )
+    </div>  
+    </GrowerContext.Provider>
+  );
 }
 
-export default App
+export default App;

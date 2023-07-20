@@ -1,6 +1,10 @@
 import React from 'react'
+import { useContext } from "react";
+
+import GrowerContext from "../context/GrowerContext";
 
 const Buds = () => {
+    const { setStep } = useContext(GrowerContext);
   return (
     <main>
     <h3>Buds</h3>
@@ -37,8 +41,16 @@ const Buds = () => {
             </fieldset>
             
             <div className='button-container'>
-                <button className='button-x2' type='submit'>Preview</button>
-                <button className='button-x2' type='submit'>Next</button>
+                <button className='button-x2' type='submit' onClick={
+                    () => {
+                       setStep("nutrients");
+                    }
+                }>Preview</button>
+                <button className='button-x2' type='submit' onClick={
+                    () => {
+                       setStep("grower");
+                    }
+                }>Finish</button>
             </div>
             <div className='option'>Option</div>
         </form>

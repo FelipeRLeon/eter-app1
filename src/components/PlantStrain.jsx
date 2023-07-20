@@ -1,6 +1,10 @@
 import React from 'react'
+import { useContext } from "react";
+
+import GrowerContext from "../context/GrowerContext";
 
 const PlantStrain = () => {
+    const { setStep } = useContext(GrowerContext);
   return (
     <main>
     <h3>Plant Strain</h3>
@@ -32,8 +36,16 @@ const PlantStrain = () => {
                 <p className="error">Valid Name Required</p>
             </fieldset>
             <div className='button-container'>
-                <button className='button-x2' type='submit'>Preview</button>
-                <button className='button-x2' type='submit'>Next</button>
+                <button className='button-x2' type='submit' onClick={
+                    () => {
+                       setStep("growtype");
+                    }
+                }>Preview</button>
+                <button className='button-x2' type='submit' onClick={
+                    () => {
+                       setStep("nutrients");
+                    }
+                }>Next</button>
             </div>
             <div className='option'>Option</div>
         </form>
