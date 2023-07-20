@@ -22,5 +22,11 @@
         &:invalid[data-focused="true"] ~ p {
             display: block;          
         }   
+        
+        // Muestra el mensaje de error con formik
+        &.error-forgot-input {
+            background-color: #f154541e;
+            border-bottom: 1px solid v.$error;
+        }
     }
 } 
