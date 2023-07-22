@@ -7,7 +7,7 @@ import { useState } from "react";
 import GrowerContext from "./context/GrowerContext";
 
 function App() {
-  const [step, setStep] = useState("plantstrain");
+  const [step, setStep] = useState("buds");
 
   return (
     <GrowerContext.Provider value={{ step, setStep,}}>
