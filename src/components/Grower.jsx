@@ -8,15 +8,26 @@ import GrowerContext from "../context/GrowerContext";
 const Grower = () => {
     const { setStep } = useContext(GrowerContext);
 
+    const persona = JSON.parse(localStorage.getItem("persona"));
+
+
     const onSubmit = () => {
-        console.log("Okok");
+        persona.grower_name = grower_name.value;
+        persona.grower_team= grower_team.value;
+        persona.grower_city = grower_city.value;
+        console.log(persona);
+        localStorage.setItem("persona" + localStorage.getItem("counter"), JSON.stringify(persona));
+        setTimeout(() => {
+            console.log("1 Segundo esperado")
+          }, 1000);
+        setStep("growtype");
     }
 
     const { values, errors, handleChange, handleBlur, handleSubmit } = useFormik({
         initialValues: {
-            grower_name: "",
-            grower_team: "",
-            grower_city: "",
+            grower_name: persona.grower_name,
+            grower_team: persona.grower_team,
+            grower_city: persona.grower_city,
         },
         validationSchema: growerSchema,
         onSubmit
@@ -39,6 +50,7 @@ const Grower = () => {
                     onChange={handleChange}
                     onBlur={handleBlur} 
                     className={errors.grower_name ? "error-forgot-input" : ""}
+                    placeholder={persona.grower_name}
                     />
                 <p className={errors.grower_name ? "error-message" : "error"}>Valid Name Required</p>
             </fieldset>
@@ -52,6 +64,7 @@ const Grower = () => {
                     onChange={handleChange}
                     onBlur={handleBlur} 
                     className={errors.grower_team ? "error-forgot-input" : ""}
+                    placeholder={persona.grower_team}
                     />
                 <p className={errors.grower_team ? "error-message" : "error"}>Valid Name Required</p>
             </fieldset>
@@ -65,11 +78,12 @@ const Grower = () => {
                     onChange={handleChange}
                     onBlur={handleBlur} 
                     className={errors.grower_city ? "error-forgot-input" : ""}
+                    placeholder={persona.grower_city}
                     />
                 <p className={errors.grower_city ? "error-message" : "error"}>Valid Name Required</p>
             </fieldset>
             <div className='button-container'>
-                <button type='submit' 
+                <button type='submit'
                 >Next</button>
             </div>
         </form>

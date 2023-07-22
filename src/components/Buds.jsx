@@ -8,17 +8,29 @@ import GrowerContext from "../context/GrowerContext";
 const Buds = () => {
     const { setStep } = useContext(GrowerContext);
 
+    const persona = JSON.parse(localStorage.getItem("persona"));
+
     const onSubmit = () => {
-        console.log("Okok");
+        persona.buds_wash = buds_wash.value;
+        persona.buds_flavor= buds_flavor.value;
+        persona.buds_smell = buds_smell.value;
+        persona.buds_floration = buds_floration.value;
+        persona.buds_production = buds_production.value;
+        console.log(persona);
+        localStorage.setItem("persona", JSON.stringify(persona));
+        setTimeout(() => {
+            console.log("1 Segundo esperado")
+          }, 1000);
+         setStep("sumary");
     }
 
     const { values, errors, handleChange, handleBlur, handleSubmit } = useFormik({
         initialValues: {
-            buds_wash: "",
-            buds_flavor: "",
-            buds_smell: "",
-            buds_floration: "",
-            buds_production: "",
+            buds_wash: persona.buds_wash,
+            buds_flavor: persona.buds_flavor,
+            buds_smell: persona.buds_smell,
+            buds_floration: persona.buds_floration,
+            buds_production: persona.buds_production,
         },
         validationSchema: budsSchema,
         onSubmit
@@ -85,6 +97,7 @@ const Buds = () => {
                 <input 
                     type="number" 
                     id="buds_production"
+                    value={values.buds_production}
                     onChange={handleChange}
                     onBlur={handleBlur} 
                     className={errors.buds_production ? "error-forgot-input" : ""}
@@ -93,13 +106,14 @@ const Buds = () => {
             </fieldset>
             
             <div className='button-container'>
-                <button className='button-x2' type='submit' 
-                >Preview</button>
-                <button className='button-x2' type='submit' onClick={
+                <button className='button-x2' type='button' 
+                onClick={
                     () => {
-                       setStep("grower");
-                    }
-                }>Finish</button>
+                       setStep("nutrients");
+                    }}
+                >Preview</button>
+                <button className='button-x2' type='submit' 
+                >Finish</button>
             </div>
         </form>
     </div>

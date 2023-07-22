@@ -7,16 +7,27 @@ import GrowerContext from "../context/GrowerContext";
 const PlantStrain = () => {
     const { setStep } = useContext(GrowerContext);
 
+    const persona = JSON.parse(localStorage.getItem("persona"));
+
     const onSubmit = () => {
-        console.log("Okok");
+        persona.plant_strain = plant_strain.value;
+        persona.plant_seedBank= plant_seedBank.value;
+        persona.plant_origin = plant_origin.value;
+        persona.plant_dominance = plant_dominance.value;
+        console.log(persona);
+        localStorage.setItem("persona", JSON.stringify(persona));
+        setTimeout(() => {
+            console.log("1 Segundo esperado")
+          }, 1000);
+        setStep("nutrients");
     }
 
     const { values, errors, handleChange, handleBlur, handleSubmit } = useFormik({
             initialValues: {
-                plant_strain: "",
-                plant_seedBank: "",
-                plant_origin: "",
-                plant_dominance: "",
+                plant_strain: persona.plant_strain,
+                plant_seedBank: persona.plant_seedBank,
+                plant_origin: persona.plant_origin,
+                plant_dominance: persona.plant_dominance,
             },
             validationSchema: plantStrainSchema,
             onSubmit
@@ -83,8 +94,11 @@ const PlantStrain = () => {
                 <p className={errors.plant_dominance ? "error-message" : "error"}>Valid Domiance Required</p>
   </fieldset>
             <div className='button-container'>
-                <button className='button-x2' type='submit' >Preview</button>
-                <button className='button-x2' type='button'>Next</button>
+                <button className='button-x2' type='button' onClick={
+                    () => {
+                       setStep("growtype");
+                    }}>Preview</button>
+                <button className='button-x2' type='submit'>Next</button>
             </div>
         </form>
     </div>

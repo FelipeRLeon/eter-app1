@@ -7,17 +7,27 @@ import GrowerContext from "../context/GrowerContext";
 
 const Nutrients = () => {
     const { setStep } = useContext(GrowerContext);
+    const persona = JSON.parse(localStorage.getItem("persona"));
 
     const onSubmit = () => {
-        console.log("Okok");
+        persona.nutrients_type = nutrients_type.value;
+        persona.nutrients_brand = nutrients_brand.value;
+        persona.nutrients_fungi = nutrients_fungi.value;
+        persona.nutrients_insect = nutrients_insect.value;
+        console.log(persona);
+        localStorage.setItem("persona", JSON.stringify(persona));
+        setTimeout(() => {
+            console.log("1 Segundo esperado")
+          }, 1000);
+        setStep("buds");
     }
 
     const { values, errors, handleChange, handleBlur, handleSubmit } = useFormik({
         initialValues: {
-            nutrients_type: "",
-            nutrients_brand: "",
-            nutrients_fungi: "",
-            nutrients_insect: "",
+            nutrients_type: persona.nutrients_type,
+            nutrients_brand: persona.nutrients_brand,
+            nutrients_fungi: persona.nutrients_fungi,
+            nutrients_insect: persona.nutrients_insect,
         },
         validationSchema: nutrientsSchema,
         onSubmit
@@ -61,6 +71,7 @@ const Nutrients = () => {
                 <input 
                     type="text" 
                     id="nutrients_fungi"
+                    value={values.nutrients_fungi}
                     onChange={handleChange}
                     onBlur={handleBlur} 
                     className={errors.nutrients_fungi ? "error-forgot-input" : ""}
@@ -71,6 +82,7 @@ const Nutrients = () => {
                 <label htmlFor="nutrients_insect">Insecticida</label>
                 <input 
                     type="text" 
+                    value={values.nutrients_insect}
                     id="nutrients_insect"
                     onChange={handleChange}
                     onBlur={handleBlur} 
@@ -80,16 +92,13 @@ const Nutrients = () => {
             </fieldset>
             
             <div className='button-container'>
-                <button className='button-x2' type='submit' onClick={
+                <button className='button-x2' type='button' onClick={
                     () => {
                        setStep("plantstrain");
                     }
                 }>Preview</button>
-                <button className='button-x2' type='submit' onClick={
-                    () => {
-                       setStep("buds");
-                    }
-                }>Next</button>
+                <button className='button-x2' type='submit' 
+                >Next</button>
             </div>
         </form>
     </div>

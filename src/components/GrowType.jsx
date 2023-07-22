@@ -7,15 +7,27 @@ import GrowerContext from "../context/GrowerContext";
 const GrowType = () => {
     const { setStep } = useContext(GrowerContext);
 
-    const onSubmit = () => {
-        console.log("Okok");
+    const persona = JSON.parse(localStorage.getItem("persona"));
+
+    function onSubmit() {
+        persona.license = license.value;
+        persona.environment= environment.value;
+        persona.grow_type = grow_type.value;
+        console.log(persona);
+        localStorage.setItem("persona", JSON.stringify(persona));
+        setTimeout(() => {
+            console.log("1 Segundo esperado")
+          }, 1000);
+        setStep("plantstrain");
+        
+        console.log(persona);
     }
 
     const { values, errors, handleChange, handleBlur, handleSubmit } = useFormik({
             initialValues: {
-                license: "",
-                environment: "",
-                grow_type: "",
+                license: persona.license,
+                environment: persona.environment,
+                grow_type: persona.grow_type,
             },
             validationSchema: growTypeSchema,
             onSubmit
@@ -34,6 +46,7 @@ const GrowType = () => {
                     onChange={handleChange}
                     onBlur={handleBlur} 
                     className={errors.license ? "error-forgot-input" : ""}
+                    placeholder={persona.license}
                     >
                     <option value="">Seleccione el tipo de licencia</option>
                     <option value="seeds">Produccion de semillas</option>
@@ -52,6 +65,7 @@ const GrowType = () => {
                     onChange={handleChange}
                     onBlur={handleBlur} 
                     className={errors.environment ? "error-forgot-input" : ""}
+                    placeholder={persona.environment}
                     >
                     <option value="">Seleccione el entorno de cultivo</option>
                     <option value="indoor">Indoor</option>
@@ -67,6 +81,7 @@ const GrowType = () => {
                     onChange={handleChange}
                     onBlur={handleBlur} 
                     className={errors.grow_type ? "error-forgot-input" : ""}>
+                        placeholder={persona.grow_type}
                     <option value="">Seleccione el tipo de cultivo</option>
                     <option value="soil">Sustrato</option>
                     <option value="hydoponic">Hidroponia</option>
@@ -76,16 +91,13 @@ const GrowType = () => {
                 <p className={errors.grow_type ? "error-message" : "error"}>Valid grow type Required</p>
             </fieldset>
             <div className='button-container'>
-                <button className='button-x2'type='submit' onClick={
+                <button className='button-x2'type='button' onClick={
                     () => {
                        setStep("grower");
                     }
                 }>Preview</button>
-                <button className='button-x2' type='submit' onClick={
-                    () => {
-                       setStep("plantstrain");
-                    }
-                }>Next</button>
+                <button className='button-x2' type='submit' 
+                >Next</button>
             </div>
             </form>
         </div>
